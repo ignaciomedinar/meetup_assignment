@@ -1,0 +1,60 @@
+[0m13:18:18.425473 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f43f1d73a40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f43f1f7c500>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f43f1d71520>]}
+
+
+============================== 13:18:18.431744 | cabe0fe8-5cd6-4d50-bdb1-27a89100ec63 ==============================
+[0m13:18:18.431744 [info ] [MainThread]: Running with dbt=1.9.4
+[0m13:18:18.433252 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/home/ignaciomedinar/.dbt', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt init meetup_assignment', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m13:18:18.455370 [debug] [MainThread]: Starter project path: /home/ignaciomedinar/meetup-dbt/.v/lib/python3.12/site-packages/dbt/include/starter_project
+[0m13:18:18.458329 [info ] [MainThread]: 
+Your new dbt project "meetup_assignment" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:18:18.458958 [info ] [MainThread]: Setting up your profile.
+[0m13:18:33.819887 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m13:18:33.820581 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m13:18:33.821031 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m13:28:21.181149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1cac308890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1cac308ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1caca4a1b0>]}
+
+
+============================== 13:28:21.185823 | e27e77b4-0ee4-4783-b291-e13a21ef938f ==============================
+[0m13:28:21.185823 [info ] [MainThread]: Running with dbt=1.9.4
+[0m13:28:21.186759 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/ignaciomedinar/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt init meetup_assignment', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:28:21.218280 [debug] [MainThread]: Starter project path: /home/ignaciomedinar/meetup-dbt/.v/lib/python3.12/site-packages/dbt/include/starter_project
+[0m13:28:21.229289 [info ] [MainThread]: 
+Your new dbt project "meetup_assignment" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:28:21.230000 [info ] [MainThread]: Setting up your profile.
+[0m13:28:25.190334 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m13:28:25.190916 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m13:28:25.191373 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m13:30:50.288370 [info ] [MainThread]: Profile meetup_assignment written to /home/ignaciomedinar/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:30:50.293326 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 164.19186, "process_in_blocks": "112480", "process_kernel_time": 0.305575, "process_mem_max_rss": "232120", "process_out_blocks": "88", "process_user_time": 3.60787}
+[0m13:30:50.295293 [debug] [MainThread]: Command `dbt init` succeeded at 13:30:50.294975 after 164.19 seconds
+[0m13:30:50.296168 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1cac7a7ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1c871d4740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f1c8744ee40>]}
+[0m13:30:50.297074 [debug] [MainThread]: Flushing usage events
+[0m13:30:50.737132 [debug] [MainThread]: An error was encountered while trying to flush usage events
