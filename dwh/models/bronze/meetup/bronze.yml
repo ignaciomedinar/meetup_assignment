@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: raw_users
+    description: "Table with unique users"
+    catalog: silver
+    schema: meetup
+
+  - name: raw_venues
+    description: "Table with unique venues"
+    catalog: silver
+    schema: meetup
+
+  - name: raw_events
+    description: "Table with unique events"
+    catalog: silver
+    schema: meetup
+
+  - name: raw_groups
+    description: "Table with unique groups"
+    catalog: silver
+    schema: meetup

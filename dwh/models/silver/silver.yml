@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: "Table with unique users"
+    catalog: silver
+    schema: dim
+
+  - name: dim_venues
+    description: "Table with unique venues"
+    catalog: silver
+    schema: dim

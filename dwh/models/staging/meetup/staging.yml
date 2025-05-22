@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: meetup
+    catalog: bronze
+    schema: meetup
+    tables:
+      - name: stg_users
+        description: "Table that contains raw data for users"
+      - name: stg_events
+      - name: stg_groups
+      - name: stg_venues
+        
