@@ -1,0 +1,9 @@
+{
+    "editor.defaultFormatter": "sqlfluff.sqlfluff",
+    "[sql]": {
+        "editor.defaultFormatter": "sqlfluff.sqlfluff",
+        "editor.formatOnSave": true
+    },
+    "sqlfluff.dialect": "databricks",
+    "sqlfluff.config": "${workspaceFolder}/.sqlfluff"
+}

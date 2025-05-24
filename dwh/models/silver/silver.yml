@@ -2,11 +2,51 @@ version: 2
 
 models:
   - name: dim_users
-    description: "Table with unique users"
+    description: "Table with unique users and attributes."
     catalog: silver
     schema: dim
 
   - name: dim_venues
-    description: "Table with unique venues"
+    description: "Table with unique venues and attributes."
     catalog: silver
     schema: dim
+
+  - name: dim_calendar
+    description: "Table with calendar dates and attributes."
+    catalog: silver
+    schema: dim
+
+  - name: dim_events
+    description: "Table with unique events and attributes."
+    catalog: silver
+    schema: dim
+
+  - name: dim_groups
+    description: "Table with unique groups and attributes."
+    catalog: silver
+    schema: dim
+
+  - name: dim_topics
+    description: "Table with unique topics and attributes."
+    catalog: silver
+    schema: dim
+
+  - name: fact_events
+    description: "Table with events."
+    catalog: silver
+    schema: fact
+
+  - name: fact_group_topics
+    description: "Table as a bridge for groups and topics."
+    catalog: silver
+    schema: fact
+
+  - name: fact_memberships
+    description: "Table with memberships."
+    catalog: silver
+    schema: fact
+  
+  - name: fact_rsvp
+    description: "Table with rsvp."
+    catalog: silver
+    schema: fact

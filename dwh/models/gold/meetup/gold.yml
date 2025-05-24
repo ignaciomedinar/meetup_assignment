@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: mart_activity_daily
+    description: "Table with count of attributes per dates."
+    catalog: gold
+    schema: meetup
+
+  - name: mart_events_detail
+    description: "Table with events with it's praticular details."
+    catalog: gold
+    schema: meetup
+
+  - name: mart_group_engagement
+    description: "Table with behabviour of each group."
+    catalog: gold
+    schema: meetup
+
+  - name: mart_member_activity
+    description: "Table with the activity of every member."
+    catalog: gold
+    schema: meetup
+
+  - name: mart_topic_trends
+    description: "Table with topics with each trends"
+    catalog: gold
+    schema: meetup

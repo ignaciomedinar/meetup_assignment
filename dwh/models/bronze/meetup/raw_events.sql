@@ -1,2 +1,4 @@
-select *
-from {{ ref('stg_events')}}
+select
+	*,
+	{{ dbt_date.now() }} as loaded_at
+from {{ source('staging', 'stg_events') }}
