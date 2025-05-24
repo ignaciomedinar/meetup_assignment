@@ -10,13 +10,14 @@ cd meetup_assignment/dwh
 ```
 
 ### 2. Upload Raw JSON Files to Databricks
-Upload the raw JSON files from the data folder (or your own copies) into your Databricks environment.
-I recommend creating a schema/database named staging and a folder named source inside it to keep your raw files organized, for example:
+Upload the raw JSON files from the data folder into your Databricks environment.
+I recommend creating a catalog named staging then a schema named source inside it and a Volume also named source to keep your raw files organized, for example:
 
 ```bash
-staging.source.events.json
-staging.source.users.json
-staging.source.groups.json
+staging.source.source.events.json
+staging.source.source.users.json
+staging.source.source.groups.json
+staging.source.source.venues.json
 ```
 
 Important:
