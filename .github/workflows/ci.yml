@@ -3,14 +3,19 @@ name: CI
 on:
   pull_request:
     branches: ["main"]
+    paths:
+      - 'dwh/models/**'
+      - 'dwh/macros/**'
+      - 'dwh/dbt_project.yml'
 
   workflow_dispatch:
 
 jobs:
   dbt-ci:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout branch 
+      - name: Checkout branch
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -18,7 +23,23 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dbt dependencies
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache dbt packages
+        uses: actions/cache@v3
+        with:
+          path: dwh/dbt_packages
+          key: ${{ runner.os }}-dbt-${{ hashFiles('dwh/packages.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-dbt-
+
+      - name: Install dbt
         run: pip install dbt-databricks
 
       - name: Create dbt profile
@@ -36,12 +57,14 @@ jobs:
           echo "      host: dbc-10cf7b0c-4f1d.cloud.databricks.com" >> ~/.dbt/profiles.yml
           echo "      http_path: /sql/1.0/warehouses/6268c85844e0cdbe" >> ~/.dbt/profiles.yml
           echo "      threads: 4" >> ~/.dbt/profiles.yml
-          echo "      token: '${DATABRICKS_TOKEN}'" >> ~/.dbt/profiles.yml
+          echo "      token: \"${DATABRICKS_TOKEN}\"" >> ~/.dbt/profiles.yml
 
-      - name: Run dbt
+      - name: Run dbt with state
         working-directory: dwh
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
+          mkdir -p .state
+          cp -r target/* .state || true
           dbt deps
-          dbt build --target ci --select state:modified+
+          dbt build --target ci --select state:modified+ --state .state
