@@ -54,6 +54,5 @@ models:
     gold:
       +catalog: gold
       meetup:
-        +materialized: incremental
-        +incremental_strategy: merge
+        +materialized: table
         +schema: meetup
