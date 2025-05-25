@@ -13,7 +13,7 @@ cd meetup_assignment/dwh
 
 ### 2. Upload Raw JSON Files to Databricks
 Upload the raw JSON files from the data folder into your Databricks environment.
-I recommend creating a catalog named staging then a schema named source inside it and a Volume also named source to keep your raw files organized, for example:
+It's recommended to create a catalog named staging, a schema named source inside it and a Volume also named source to keep your raw files organized, for example:
 
 ```bash
 staging.source.source.events.json
@@ -23,10 +23,10 @@ staging.source.source.venues.json
 ```
 
 Important:
-The staging .sql files in the models/staging directory reference the JSON files using a file path variable in the source CTEs.
+The staging .sql files in the models/staging directory reference these JSON files using a file path variable in the code.
 You must update the file path in those files to match your actual file location in Databricks.
 
-For example, in your models/staging/stg_events.sql file, you might see something like:
+For example, in your models/staging/meetup/stg_events.sql file, you might see something like:
 
 ```bash
 select * from json.`/Volumes/staging/source/source/events.json`
@@ -36,25 +36,26 @@ Change the path /Volumes/staging/source/source/events.json to the path where you
 
 ```bash
 select * from json.`/mnt/databricks/data/source/events.json`
-Make sure each staging model points to the correct location for its respective JSON file.
 ```
 
+Make sure each staging model points to the correct location for its respective JSON file.
+
 ### 3. Configure Your dbt Profile
-Install a virtual environment and make sure your ~/.dbt/profiles.yml is configured to connect to your Databricks workspace with the correct credentials, schema, and database.
+Set up a Python virtual environment and configure your ~/.dbt/profiles.yml to connect to your Databricks workspace with the correct credentials, schema, and database.
 
 ### 4. Run dbt Commands
 Use dbt to build your models in order from staging to gold:
 
 ```bash
-dbt deps          # Install dependencies if any
-dbt seed          # Load seed data if applicable
-dbt run --models staging  # Build staging views on your JSON files
-dbt run --models bronze   # Build bronze tables with load timestamps
-dbt run --models silver   # Build dimensions and fact tables
-dbt run --models gold     # Build final data marts
-dbt test          # Run tests on your models
-dbt docs generate # Generate documentation site
-dbt docs serve    # Serve documentation locally for browsing
+dbt deps                    # Install dependencies if any
+dbt seed                    # Load seed data if applicable
+dbt run --models staging    # Build staging views on your JSON files
+dbt run --models bronze     # Build bronze tables with load timestamps
+dbt run --models silver     # Build dimensions and fact tables
+dbt run --models gold       # Build final data marts
+dbt test                    # Run tests on your models
+dbt docs generate           # Generate documentation site
+dbt docs serve              # Serve documentation locally for browsing
 ```
 
 ### 5. Explore and Query

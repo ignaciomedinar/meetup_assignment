@@ -28,12 +28,48 @@ models:
       - name: members_joined_group_count
         description: "Memebers that join any group on that day."
       - name: loaded_at
-        description: ""
+        description: "Time of record load."
 
   - name: mart_events_detail
     description: "Table with events with it's praticular details."
     catalog: gold
     schema: meetup
+    columns:
+      - name: event_name
+        description: "Name of the event."
+        tests:
+          - not_null
+      - name: event_status
+        description: "Status of the event."
+        tests:
+          - accepted_values:
+              values: ['past', 'upcoming', 'suggested', 'proposed', 'cancelled']
+      - name: event_created_date
+        description: "Date when the event was created."
+      - name: event_date
+        description: "Date when the event happened."
+      - name: created_to_event_days
+        description: "Days passed between when the event was created and when the event occurred."
+      - name: event_duration_minutes
+        description: "Time of the event in minutes."
+      - name: venue_name
+        description: "The venue name of where the event took place."
+      - name: venue_city
+        description: "The city where the venue is located."
+      - name: group_name
+        description: "The name of the group for that event."
+      - name: group_city
+        description: "The city of the group of the event."
+      - name: group_to_venue_km
+        description: "Kilometers from the location of the group to the venue."
+      - name: attendees_users
+        description: "Number of users that confirmed."
+      - name: attendees_guests
+        description: "Number of guests of the members."
+      - name: attendees_total
+        description: "The total number of attendees to the event."
+      - name: loaded_at
+        description: "Time of record load."
 
   - name: mart_group_engagement
     description: "Table with behabviour of each group."
