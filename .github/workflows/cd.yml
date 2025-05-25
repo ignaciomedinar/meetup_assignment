@@ -1,14 +1,15 @@
-name: dbt CD
+name: CD
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
 
 jobs:
   dbt-cd:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout branch 
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -16,29 +17,27 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install dbt dependencies
         run: pip install dbt-databricks
 
-      - name: Set up dbt profile
-        run: |
-          mkdir -p ~/.dbt
-          cat > ~/.dbt/profiles.yml <<EOF
-          dwh:
-            target: dev
-            outputs:
-              dev:
-                type: databricks
-                catalog: bronze
-                schema: default
-                host: dbc-10cf7b0c-4f1d.cloud.databricks.com
-                http_path: /sql/1.0/warehouses/6268c85844e0cdbe
-                threads: 4
-                token: "${DATABRICKS_TOKEN}"
-EOF
+      - name: Configure dbt profile
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          mkdir -p ~/.dbt
+          echo "dwh:" > ~/.dbt/profiles.yml
+          echo "  target: dev" >> ~/.dbt/profiles.yml
+          echo "  outputs:" >> ~/.dbt/profiles.yml
+          echo "    dev:" >> ~/.dbt/profiles.yml
+          echo "      type: databricks" >> ~/.dbt/profiles.yml
+          echo "      catalog: bronze" >> ~/.dbt/profiles.yml
+          echo "      schema: default" >> ~/.dbt/profiles.yml
+          echo "      host: dbc-10cf7b0c-4f1d.cloud.databricks.com" >> ~/.dbt/profiles.yml
+          echo "      http_path: /sql/1.0/warehouses/6268c85844e0cdbe" >> ~/.dbt/profiles.yml
+          echo "      threads: 4" >> ~/.dbt/profiles.yml
+          echo "      token: '${DATABRICKS_TOKEN}'" >> ~/.dbt/profiles.yml
 
-      - name: Run dbt
+      - name: Run dbt deploy
         working-directory: dwh
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
