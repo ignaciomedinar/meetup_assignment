@@ -44,7 +44,7 @@ models:
         description: "Status of the event."
         tests:
           - accepted_values:
-              values: ['past', 'upcoming']
+              values: ['past', 'upcoming', 'suggested', 'proposed', 'cancelled']
       - name: event_created_date
         description: "Date when the event was created."
       - name: event_date

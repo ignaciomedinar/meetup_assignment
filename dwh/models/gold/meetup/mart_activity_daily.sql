@@ -44,7 +44,7 @@ rsvp as (
 		rsvp_at::date
 )
 
-select
+select distinct
 	date_key,
 	dc.calendar_date,
 	dc.week_start,
