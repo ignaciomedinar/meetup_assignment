@@ -18,27 +18,25 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install dbt dependencies
         run: pip install dbt-databricks
 
-      - name: Set up dbt profile
-        run: |
-          mkdir -p ~/.dbt
-          cat > ~/.dbt/profiles.yml <<EOF
-          dwh:
-            target: ci
-            outputs:
-              ci:
-                type: databricks
-                catalog: meetup
-                schema: ci_schema
-                host: dbc-10cf7b0c-4f1d.cloud.databricks.com
-                http_path: /sql/1.0/warehouses/6268c85844e0cdbe
-                threads: 4
-                token: "${DATABRICKS_TOKEN}"
-EOF
+      - name: Create dbt profile
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          mkdir -p ~/.dbt
+          echo "dwh:" > ~/.dbt/profiles.yml
+          echo "  target: ci" >> ~/.dbt/profiles.yml
+          echo "  outputs:" >> ~/.dbt/profiles.yml
+          echo "    ci:" >> ~/.dbt/profiles.yml
+          echo "      type: databricks" >> ~/.dbt/profiles.yml
+          echo "      catalog: meetup" >> ~/.dbt/profiles.yml
+          echo "      schema: ci_schema" >> ~/.dbt/profiles.yml
+          echo "      host: dbc-10cf7b0c-4f1d.cloud.databricks.com" >> ~/.dbt/profiles.yml
+          echo "      http_path: /sql/1.0/warehouses/6268c85844e0cdbe" >> ~/.dbt/profiles.yml
+          echo "      threads: 4" >> ~/.dbt/profiles.yml
+          echo "      token: '${DATABRICKS_TOKEN}'" >> ~/.dbt/profiles.yml
 
       - name: Run dbt
         working-directory: dwh
