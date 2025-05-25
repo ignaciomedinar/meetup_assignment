@@ -21,6 +21,25 @@ jobs:
       - name: Install dependencies
         run: pip install dbt-databricks
 
+      - name: Set up dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          dwh:
+            target: ci
+            outputs:
+              ci:
+                type: databricks
+                catalog: meetup
+                schema: ci_schema
+                host: dbc-10cf7b0c-4f1d.cloud.databricks.com
+                http_path: /sql/1.0/warehouses/6268c85844e0cdbe
+                threads: 4
+                token: "${DATABRICKS_TOKEN}"
+EOF
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
       - name: Run dbt
         working-directory: dwh
         env:

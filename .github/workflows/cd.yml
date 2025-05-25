@@ -2,14 +2,14 @@ name: dbt CD
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   dbt-cd:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout branch 
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -17,8 +17,26 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
+        run: pip install dbt-databricks
+
+      - name: Set up dbt profile
         run: |
-          pip install dbt-databricks
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          dwh:
+            target: dev
+            outputs:
+              dev:
+                type: databricks
+                catalog: bronze
+                schema: default
+                host: dbc-10cf7b0c-4f1d.cloud.databricks.com
+                http_path: /sql/1.0/warehouses/6268c85844e0cdbe
+                threads: 4
+                token: "${DATABRICKS_TOKEN}"
+EOF
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
 
       - name: Run dbt
         working-directory: dwh
@@ -26,4 +44,4 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
           dbt deps
-          dbt build --target prod
+          dbt build --target dev
