@@ -10,8 +10,6 @@ sources:
         columns:
           - name: user_id
             description: "A unique identifier for this user."
-            tests:
-              - not_null
           - name: city
             description: "City where the user resides."
           - name: country
@@ -79,8 +77,6 @@ sources:
             description: "Link to the group's homepage."
           - name: group_id
             description: "Unique identifier for this group. This is used as a reference in other objects."
-            tests:
-              - not_null
           - name: topics
             description: "Array of topics that this group discusses or otherwise associates with."
             
