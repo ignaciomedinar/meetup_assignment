@@ -67,4 +67,4 @@ jobs:
           mkdir -p .state
           cp -r target/* .state || true
           dbt deps
-          dbt build --target ci --select state:modified+ --state .state
+          dbt build --target ci
