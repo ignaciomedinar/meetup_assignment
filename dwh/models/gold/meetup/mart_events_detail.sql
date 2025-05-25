@@ -5,7 +5,6 @@ with base as (
 		fe.event_created_at::date as event_created_date,
 		fe.event_time::date as event_date,
 		{{ datediff("fe.event_created_at", "fe.event_time", "day") }} as created_to_event_days,
-  --   date_diff(fe.event_time, fe.event_created_at) as days_to_event,
 		fe.event_duration_minutes,
 		dv.venue_name,
 		dv.venue_city,
