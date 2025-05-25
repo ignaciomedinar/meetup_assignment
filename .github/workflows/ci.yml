@@ -22,6 +22,7 @@ jobs:
         run: pip install dbt-databricks
 
       - name: Run dbt
+        working-directory: dwh
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
