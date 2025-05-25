@@ -40,7 +40,7 @@ Make sure each staging model points to the correct location for its respective J
 ```
 
 ### 3. Configure Your dbt Profile
-Make sure your ~/.dbt/profiles.yml is configured to connect to your Databricks workspace with the correct credentials, schema, and database.
+Install a virtual environment and make sure your ~/.dbt/profiles.yml is configured to connect to your Databricks workspace with the correct credentials, schema, and database.
 
 ### 4. Run dbt Commands
 Use dbt to build your models in order from staging to gold:

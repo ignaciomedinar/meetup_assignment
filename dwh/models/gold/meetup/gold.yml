@@ -5,6 +5,30 @@ models:
     description: "Table with count of attributes per dates."
     catalog: gold
     schema: meetup
+    columns: 
+      - name: date_key
+        description: "Date key with a number format."
+        tests:
+          - unique
+          - not_null
+      - name: calendar_date
+        description: "Date on calendar."
+      - name: week_start
+        description: "First day of the week starting on Monday."
+      - name: weekday_name
+        description: "Day of the week."
+      - name: month_start
+        description: "First day of the month."
+      - name: events_created_count
+        description: "Number of events created on that day."
+      - name: events_ocurred_count
+        description: "Events that happened on that day."
+      - name: group_created_count
+        description: "Groups created on that day."
+      - name: members_joined_group_count
+        description: "Memebers that join any group on that day."
+      - name: loaded_at
+        description: ""
 
   - name: mart_events_detail
     description: "Table with events with it's praticular details."
