@@ -2,6 +2,8 @@
 
 Follow these steps to set up and run the project locally with your own Databricks environment:
 
+Note: This project was developed using Windows Subsistem for Linux (WSL)
+
 ### 1. Clone the Repository
 
 ```bash
